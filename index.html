@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solar System </title>
+    <style>
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        background: black;
+        color: white;
+      }
+
+      #controls {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 8px;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      .slider-group {
+        margin-bottom: 10px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 4px;
+      }
+    </style>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.161/build/three.module.js",
+          "jsm/": "https://cdn.jsdelivr.net/npm/three@0.161/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- 🌍 Speed Controls UI -->
+    <div id="controls"></div>
+
+    <script type="module" src="index.js"></script>
+
+    <script>
+      // ✨ Wait until the window loads and our global `planetSpeedControls` is set
+      window.addEventListener("DOMContentLoaded", () => {
+        const planetNames = ["mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune"];
+        const controlsDiv = document.getElementById("controls");
+
+        planetNames.forEach((planet) => {
+          const group = document.createElement("div");
+          group.className = "slider-group";
+
+          const label = document.createElement("label");
+          label.textContent = `${planet[0].toUpperCase()}${planet.slice(1)} Speed`;
+          label.htmlFor = `${planet}-slider`;
+
+          const slider = document.createElement("input");
+          slider.type = "range";
+          slider.min = "1";
+          slider.max = "100";
+          slider.step = "0.1";
+          slider.value = "1";
+          slider.id = `${planet}-slider`;
+
+          slider.addEventListener("input", () => {
+            if (window.setPlanetSpeed) {
+              window.setPlanetSpeed(planet, parseFloat(slider.value));
+            }
+          });
+
+          group.appendChild(label);
+          group.appendChild(slider);
+          controlsDiv.appendChild(group);
+        });
+      });
+    </script>
+  </body>
+</html>
