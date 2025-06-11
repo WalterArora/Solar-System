@@ -218,7 +218,7 @@ function initScene(data) {
 
 //   // Console instructions for users
 //   console.log(`
-// 🌍 Solar System Speed Controls Available:
+//  Solar System Speed Controls Available:
 
 // Usage Examples:
 // • setPlanetSpeed('earth', 2.0)     - Double Earth's orbital speed
