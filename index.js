@@ -84,10 +84,9 @@ window.listPlanetSpeeds = function() {
 function createPlanetWithSpeedControl(config, planetName) {
   const planet = getPlanet(config);
   
-  // Store original update function
+
   const originalUpdate = planet.userData.update;
-  
-  // Override update function to include speed control
+
   planet.userData.update = function(t) {
     const speedMultiplier = planetSpeedControls[planetName.toLowerCase()] || 1.0;
     
@@ -218,7 +217,7 @@ function initScene(data) {
 
 //   // Console instructions for users
 //   console.log(`
-//  Solar System Speed Controls Available:
+//  Solar System Speed controls:
 
 // Usage Examples:
 // • setPlanetSpeed('earth', 2.0)     - Double Earth's orbital speed
